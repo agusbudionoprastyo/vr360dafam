@@ -1,0 +1,6 @@
+
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dafm5634/public_html/vr360
+    - /bin/cp -R * $DEPLOYPATH
