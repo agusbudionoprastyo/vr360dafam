@@ -2232,7 +2232,7 @@ if($result) {
                 <div class="dropdown"></div>
             </div>
             <div class="menu_controls noselect">
-                <div class="title"><i class="fas fa-bars small-element" onclick="click_menu_controls()"></i>
+                <div class="title"><i class="fas fa-vr-cardboard small-element" onclick="click_menu_controls()"></i>
                     <div class="arrow"></div>
                 </div>
                 <div class="dropdown">
