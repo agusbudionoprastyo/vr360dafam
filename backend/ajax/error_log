@@ -1,0 +1,40 @@
+[14-Aug-2024 14:50:10 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50
+[14-Aug-2024 14:53:19 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50
+[14-Aug-2024 17:35:45 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50
+[14-Aug-2024 17:35:53 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50
+[14-Aug-2024 17:36:17 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50
+[14-Aug-2024 17:39:58 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50
+[14-Aug-2024 17:41:56 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50
+[14-Aug-2024 17:45:10 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: imageinterlace(): Argument #1 ($image) must be of type GdImage, false given in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php:50
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php(50): imageinterlace()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/backend/ajax/upload_logo_image.php on line 50

@@ -1,0 +1,21 @@
+<?php
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
+ob_start();
+session_start();
+if($_SESSION['svt_si']!=session_id()) {
+    die();
+}
+require_once("../../db/connection.php");
+session_write_close();
+$id_poi = (int)$_POST['id_poi'];
+$image = '';
+$query = "SELECT image FROM svt_poi_embedded_gallery WHERE id_poi=$id_poi ORDER BY priority LIMIT 1;";
+$result = $mysqli->query($query);
+if($result) {
+    if($result->num_rows==1) {
+        $row=$result->fetch_array(MYSQLI_ASSOC);
+        $image=$row['image'];
+    }
+}
+ob_end_clean();
+echo $image;

@@ -1,0 +1,10 @@
+<IfModule mod_headers.c>
+    Header always unset X-Frame-Options
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+?)/?$ index.php?furl=$1 [L,QSA]
+</IfModule>

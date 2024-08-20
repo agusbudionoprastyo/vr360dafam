@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Potree Viewer</title>
+	<link rel="stylesheet" type="text/css" href="../build/potree/potree.css">
+	<link rel="stylesheet" type="text/css" href="../libs/jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../libs/jstree/themes/mixed/style.css">
+</head>
+<body>
+<script src="../libs/jquery/jquery-3.1.1.min.js"></script>
+<script src="../libs/spectrum/spectrum.js"></script>
+<script src="../libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="../libs/other/BinaryHeap.js"></script>
+<script src="../libs/tween/tween.min.js"></script>
+<script src="../libs/d3/d3.js"></script>
+<script src="../libs/proj4/proj4.js"></script>
+<script src="../libs/i18next/i18next.js"></script>
+<script src="../libs/jstree/jstree.js"></script>
+<script src="../libs/three.js/build/three.min.js"></script>
+<script src="../build/potree/potree.js"></script>
+<script src="../libs/plasio/js/laslaz.js"></script>
+<div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
+	<div id="potree_render_area"></div>
+	<div id="potree_sidebar_container"> </div>
+	<div id="debug_potree">
+		<button onclick="saveParameters();">SAVE SETTINGS</button>
+	</div>
+</div>
+<style>
+	#debug_potree {
+		display: none;
+		position: absolute;
+		z-index: 10;
+		color: white;
+		bottom: 10px;
+		right: 10px;
+	}
+	#debug_potree button {
+		border: 0;
+		outline: 0;
+		background: white;
+		color: black;
+		padding: 10px 20px;
+		font-size: 16px;
+		font-weight: bold;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	.save_ok {
+		background: green !important;
+		color: white !important;
+	}
+	.save_error {
+		background: red !important;
+		color: white !important;
+	}
+	#potree_sidebar_container {
+		-webkit-transition: left .35s;
+		transition: left .35s;
+		left: -300px;
+	}
+	.sp-container {
+		opacity: 0;
+		pointer-events: none;
+	}
+</style>
+<script type="module">
+	var parse_url = document.documentURI.split('?');
+	var tmp_parse = parse_url[1].split('&');
+	var id_poi = tmp_parse[0].replace('id_poi=','');
+	var source_potree = tmp_parse[1].replace('file=','');
+	if (tmp_parse.hasOwnProperty(2)) {
+		var edit_mode = tmp_parse[2].replace('edit=','');
+	} else {
+		var edit_mode = 0;
+	}
+	var directory_potree = '';
+	var time = Date.now();
+	window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
+	viewer.setEDLEnabled(true);
+	viewer.setFOV(60);
+	viewer.setPointBudget(2_000_000);
+	viewer.loadGUI(() => {
+		viewer.setLanguage('en');
+		$("#menu_appearance").next().show();
+		$("#menu_tools").next().show();
+		$("#menu_clipping").next().show();
+		$('#potree_branding').hide();
+		$('#menu_about').hide();
+		$('#scene_export').hide();
+	});
+	if( source_potree.indexOf("http") == 0 ) {
+		var path_potree_files = source_potree;
+	} else {
+		var path_potree_files = '../../../'+source_potree;
+	}
+	Potree.loadPointCloud(path_potree_files, "", e => {
+		let scene = viewer.scene;
+		let pointcloud = e.pointcloud;
+		let material = pointcloud.material;
+		material.size = 1;
+		material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+		material.shape = Potree.PointShape.SQUARE;
+		material.activeAttributeName = "rgba";
+		scene.addPointCloud(pointcloud);
+		var lastSeparatorIndex = path_potree_files.lastIndexOf("/");
+		directory_potree = path_potree_files.substring(0, lastSeparatorIndex + 1);
+		var settings_file = directory_potree + 'settings_'+id_poi+'.json?v='+time;
+		fetch(settings_file).then(response => response.text()).then(json => {
+			if(json!='') {
+				var parameters = JSON.parse(json);
+				Potree.loadProject(window.viewer,parameters);
+			} else {
+				viewer.fitToScreen();
+			}
+			if(edit_mode==1) {
+				$('#debug_potree').show();
+			}
+		}).catch(error => {
+			viewer.fitToScreen();
+			if(edit_mode==1) {
+				$('#debug_potree').show();
+			}
+		});
+	});
+
+	const element = document.getElementById('potree_render_area');
+	const observer = new MutationObserver(mutationsList => {
+		for (const mutation of mutationsList) {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+				const styles = window.getComputedStyle(element);
+				const cssValue = styles.getPropertyValue('left');
+				if(cssValue=='300px') {
+					$('.sp-container').css({'opacity':0,'pointer-events':'none'});
+					$('#potree_sidebar_container').css('left','-300px');
+				} else {
+					setTimeout(function() {
+						$('.sp-container').css({'opacity':1,'pointer-events':'initial'});
+					},400);
+					$('#potree_sidebar_container').css('left','0px');
+				}
+			}
+		}
+	});
+	observer.observe(element, { attributes: true });
+
+	window.saveParameters = function() {
+		$('#debug_potree button').addClass('disabled');
+		var json = Potree.saveProject(window.viewer);
+		var settings = JSON.stringify(json);
+		$.ajax({
+			url: "../ajax/save_settings.php",
+			type: "POST",
+			data: {
+				id_poi: id_poi,
+				settings: settings,
+				path: directory_potree
+			},
+			async: true,
+			success: function (rsp) {
+				$('#debug_potree button').removeClass('disabled');
+				if(rsp=='ok') {
+					$('#debug_potree button').addClass('save_ok');
+					setTimeout(function() {
+						$('#debug_potree button').removeClass('save_ok');
+					},1500);
+				} else {
+					$('#debug_potree button').addClass('save_error');
+					setTimeout(function() {
+						$('#debug_potree button').removeClass('save_error');
+					},1500);
+				}
+			},
+			error: function() {
+				$('#debug_potree button').removeClass('disabled');
+				$('#debug_potree button').addClass('save_error');
+				setTimeout(function() {
+					$('#debug_potree button').removeClass('save_error');
+				},1500);
+			}
+		});
+	}
+</script>
+</body>
+</html>

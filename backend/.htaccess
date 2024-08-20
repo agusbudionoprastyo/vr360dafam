@@ -1,0 +1,30 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+    RewriteEngine on
+    RewriteCond %{THE_REQUEST} /index\.php [NC]
+    RewriteCond %{REQUEST_URI} ^(.*/)index\.php$ [NC]
+    RewriteRule ^ %1 [NC,L,R]
+    RewriteRule !^(login|register) - [L]
+    RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+    RewriteRule ^ /%1 [NC,L,R]
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+</IfModule>
+
+<IfModule mod_deflate.c>
+    <IfModule mod_filter.c>
+        AddOutputFilter DEFLATE js css
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4.0[678] no-gzip
+        BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+    </IfModule>
+</IfModule>
+
+<IfModule mod_security.c>
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+    SecTmpSaveUploadedFiles On
+</IfModule>

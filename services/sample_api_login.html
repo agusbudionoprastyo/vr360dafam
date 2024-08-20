@@ -1,0 +1,35 @@
+<html>
+<body>
+<button onclick="login_svt()">LOGIN</button>
+<script>
+    function login_svt() {
+        /* CHANGE THESE PARAMETERS*/
+        var url_svt = 'https://simplevirtualtour.it/app';
+        var username_svt = 'demo';
+        var password_svt = 'test1234';
+        /* CHANGE THESE PARAMETERS*/
+
+        var url_api = url_svt+"/services/api.php";
+        var url_backend = url_svt+"/backend/login.php"
+        var data = {endpoint: "login", username: username_svt, password: password_svt};
+        fetch(url_api, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            switch (data.code) {
+                case 200:
+                    var token = data.token;
+                    location.href=url_backend+'?token='+token;
+                    break;
+                default:
+                    alert(data.message);
+                    break;
+            }
+        });
+    }
+</script>
+</body>
+</html>

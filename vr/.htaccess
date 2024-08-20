@@ -1,0 +1,33 @@
+<IfModule mod_headers.c>
+    Header always unset X-Frame-Options
+    <FilesMatch ".+\.(usdz)$">
+        Header set Content-Type "model/vnd.usdz+zip"
+        Header set Content-Disposition "attachment"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+?)/?$ index.php?furl=$1 [L,QSA]
+</IfModule>
+
+<IfModule mod_deflate.c>
+    <IfModule mod_filter.c>
+        AddOutputFilter DEFLATE js css
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4.0[678] no-gzip
+        BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+    </IfModule>
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresDefault "access plus 1 days"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+</IfModule>

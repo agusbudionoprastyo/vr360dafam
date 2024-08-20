@@ -1,0 +1,15 @@
+[14-Aug-2024 13:42:01 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`dafm5634_vr360`.`svt_access_log_room`, CONSTRAINT `svt_access_log_room_ibfk_1` FOREIGN KEY (`id_room`) REFERENCES `svt_rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php:19
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php(19): mysqli->query()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php on line 19
+[19-Aug-2024 16:36:56 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`dafm5634_vr360`.`svt_access_log_poi`, CONSTRAINT `svt_access_log_poi_ibfk_1` FOREIGN KEY (`id_poi`) REFERENCES `svt_pois` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php:15
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php(15): mysqli->query()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php on line 15
+[19-Aug-2024 16:36:59 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`dafm5634_vr360`.`svt_access_log_poi`, CONSTRAINT `svt_access_log_poi_ibfk_1` FOREIGN KEY (`id_poi`) REFERENCES `svt_pois` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php:15
+Stack trace:
+#0 /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php(15): mysqli->query()
+#1 {main}
+  thrown in /home/dafm5634/public_html/vr360/viewer/ajax/set_statistics.php on line 15

@@ -1,0 +1,108 @@
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #343434;
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#vt_scene {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+.loading {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    opacity: 1;
+    pointer-events: initial;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+.progress {
+    position: absolute;
+    z-index: 9999;
+    bottom: 10px;
+    width: 100%;
+}
+.progress img {
+    max-height: 80px;
+}
+.progress-circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: calc(50% - 90px);
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 9999;
+}
+#name_virtualtour {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: default;
+}
+#author_virtualtour {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    cursor: default;
+}
+#background_loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: no-repeat center center fixed;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: 9998;
+}
+@media (max-width: 540px) and (orientation: portrait) {
+    #background_loading {
+        background: no-repeat top center scroll;
+    }
+}
+.background_opacity {
+    opacity: 0.4;
+}
+div.a-enter-ar {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+#exit_vr_button {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: black;
+    z-index: 9999;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}

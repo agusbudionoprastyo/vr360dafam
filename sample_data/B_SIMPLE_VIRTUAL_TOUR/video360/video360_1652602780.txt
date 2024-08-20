@@ -1,0 +1,8 @@
+00:00:00 Entrance
+00:00:10 Living Room
+00:00:20 Hallway
+00:00:30 Double Room
+00:00:40 Bed Room
+00:00:50 Laundry
+00:01:00 Bathroom
+00:01:10 Exterior
