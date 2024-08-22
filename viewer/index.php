@@ -1724,8 +1724,8 @@ if($result) {
                 <?php if($logo!='') : ?>
                     <img src="<?php echo ($s3_enabled) ? $s3_url : ''; ?>content/<?php echo $logo; ?>" />
                 <?php endif; ?>
-                <h3 class="noselect" id="name_virtualtour"><?php echo $name_virtualtour; ?></h3>
-                <h2 class="noselect <?php echo (empty($author_virtualtour)) ? 'hidden' : ''; ?>" id="author_virtualtour"><?php echo sprintf(_("presented by %s"),$author_virtualtour); ?></h2>
+                <!-- <h3 class="noselect" id="name_virtualtour"><?php echo $name_virtualtour; ?></h3> -->
+                <!-- <h2 class="noselect <?php echo (empty($author_virtualtour)) ? 'hidden' : ''; ?>" id="author_virtualtour"><?php echo sprintf(_("presented by %s"),$author_virtualtour); ?></h2> -->
             </div>
         </div>
         <div id="background_loading" class="background_opacity"></div>

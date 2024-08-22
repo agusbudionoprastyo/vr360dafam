@@ -371,8 +371,8 @@ if($export==0) {
         <?php if($logo!='') : ?>
             <img src="<?php echo $path; ?>content/<?php echo $logo.(($s3_enabled) ? '?v=s3='.$s3_version : ''); ?>" />
         <?php endif; ?>
-        <h3 class="noselect" id="name_virtualtour"><?php echo $name_virtualtour; ?></h3>
-        <h2 class="noselect <?php echo (empty($author_virtualtour)) ? 'hidden' : ''; ?>" id="author_virtualtour"><?php echo _("presented by")." ".$author_virtualtour; ?></h2>
+        <!-- <h3 class="noselect" id="name_virtualtour"><?php echo $name_virtualtour; ?></h3> -->
+        <!-- <h2 class="noselect <?php echo (empty($author_virtualtour)) ? 'hidden' : ''; ?>" id="author_virtualtour"><?php echo _("presented by")." ".$author_virtualtour; ?></h2> -->
     </div>
     <?php if(!empty($background_image)) : ?>
     <div id="background_loading" class="background_opacity" style="background-image: url('<?php echo $path; ?>content/<?php echo $background_image.(($s3_enabled) ? '?v=s3='.$s3_version : ''); ?>');"></div>
